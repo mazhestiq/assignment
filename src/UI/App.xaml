@@ -9,24 +9,6 @@
                     <local:Bootstrapper x:Key="Bootstrapper" />
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
-
-            <ControlTemplate x:Key="ErrorTemplate">
-                <DockPanel>
-                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom">
-                        <Grid Width="12" Height="12">
-                            <Ellipse Width="12" Height="12" Fill="Red" HorizontalAlignment="Right" VerticalAlignment="Center"></Ellipse>
-                            <TextBlock Foreground="White" FontWeight="Heavy" 
-                                       FontSize="8" HorizontalAlignment="Right" 
-                                       VerticalAlignment="Center" TextAlignment="Right"
-                                       ToolTip="{Binding ElementName=ErrorAdorner, Path=AdornedElement.(Validation.Errors)[0].ErrorContent}">X</TextBlock>
-                        </Grid>
-                        <TextBlock Foreground="Red" FontWeight="12" Margin="2,0,0,0" 
-                                   Text="{Binding ElementName=ErrorAdorner, Path=AdornedElement.(Validation.Errors)[0].ErrorContent}">
-                        </TextBlock>
-                    </StackPanel>
-                    <AdornedElementPlaceholder x:Name="ErrorAdorner" ></AdornedElementPlaceholder>
-                </DockPanel>
-            </ControlTemplate>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
