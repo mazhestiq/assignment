@@ -1,7 +1,7 @@
 ﻿using Assignment.Application.Common.Interfaces;
 using Assignment.Application.Common.Security;
 
-namespace Assignment.Application.Countries.Queries;
+namespace Assignment.Application.Countries.Queries.GetCountries;
 
 [Authorize]
 public class GetCountriesQuery : IRequest<IList<CountryDto>>;

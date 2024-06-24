@@ -12,6 +12,8 @@
     <PackageReference Include="FluentValidation.DependencyInjectionExtensions" />
     <PackageReference Include="MediatR" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" />
+    <PackageReference Include="Moq" />
+    <PackageReference Include="Refit" />
   </ItemGroup>
 
   <ItemGroup>

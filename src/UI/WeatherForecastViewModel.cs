@@ -6,9 +6,10 @@ using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
-using Assignment.Application.Countries.Queries;
+using Assignment.Application.Countries.Queries.GetCountries;
 using Assignment.Application.TodoItems.Commands.DoneTodoItem;
 using Assignment.Application.TodoLists.Queries.GetTodos;
+using Assignment.Application.WeatherForecast.Queries.GetWeather;
 using Assignment.Domain.Entities;
 using Caliburn.Micro;
 using MediatR;
@@ -103,7 +104,7 @@ public class WeatherForecastViewModel : Screen
         Cities = country.Cities;
     }
 
-    private void RefreshTemperature(CityDto city)
+    private async void RefreshTemperature(CityDto city)
     {
         if (city == null)
         {
@@ -111,6 +112,7 @@ public class WeatherForecastViewModel : Screen
             return;
         }
 
-        Temperature = $"{city.Name} temperature is 10";
+        var temp = await _sender.Send(new GetWeatherTemperatureForCityQuery { CityName = city.Name });
+        Temperature = $"{city.Name} temperature is {temp}";
     }
 }

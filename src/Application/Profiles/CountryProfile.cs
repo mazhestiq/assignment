@@ -1,4 +1,4 @@
-﻿using Assignment.Application.Countries.Queries;
+﻿using Assignment.Application.Countries.Queries.GetCountries;
 using Assignment.Domain.Entities;
 
 namespace Assignment.Application.Profiles;

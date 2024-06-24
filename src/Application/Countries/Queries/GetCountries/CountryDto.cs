@@ -1,4 +1,4 @@
-﻿namespace Assignment.Application.Countries.Queries;
+﻿namespace Assignment.Application.Countries.Queries.GetCountries;
 
 public class CountryDto
 {
