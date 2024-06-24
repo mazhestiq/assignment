@@ -6,7 +6,7 @@ public class TodoListProfile : Profile
 {
     public TodoListProfile()
     {
-        CreateMap< Assignment.Domain.Entities.TodoList,Assignment.Application.TodoLists.Queries.GetTodos.TodoListDto> ().ReverseMap();
-        CreateMap<Assignment.Domain.Entities.TodoItem, Assignment.Application.TodoLists.Queries.GetTodos.TodoItemDto>().ReverseMap();
+        CreateMap< TodoList,TodoListDto> ().ReverseMap();
+        CreateMap<TodoItem, TodoItemDto>().ReverseMap();
     }
 }

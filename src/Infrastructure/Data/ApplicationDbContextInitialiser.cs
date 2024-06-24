@@ -37,17 +37,19 @@ public class ApplicationDbContextInitialiser
         _roleManager = roleManager;
     }
 
-    public async Task InitialiseAsync()
+    public  Task InitialiseAsync()
     {
         try
         {
-            await _context.Database.MigrateAsync();
+            //await _context.Database.MigrateAsync();
         }
         catch (Exception ex)
         {
             _logger.LogError(ex, "An error occurred while initialising the database.");
             throw;
         }
+
+        return Task.CompletedTask;
     }
 
     public async Task SeedAsync()
@@ -98,6 +100,27 @@ public class ApplicationDbContextInitialiser
                     new TodoItem { Title = "Check off the first item ✅" },
                     new TodoItem { Title = "Realise you've already done two things on the list! 🤯"},
                     new TodoItem { Title = "Reward yourself with a nice, long nap 🏆" },
+                }
+            });
+
+            await _context.SaveChangesAsync();
+        }
+
+        if (!_context.Countries.Any())
+        {
+            _context.Countries.AddRange(new Country
+            {
+                Name = "Germany",
+                Cities =
+                {
+                    new City { Name = "Berlin" }
+                }
+            }, new Country
+            {
+                Name = "Poland",
+                Cities =
+                {
+                    new City { Name = "Warsaw" }
                 }
             });
 

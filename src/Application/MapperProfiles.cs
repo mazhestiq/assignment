@@ -11,5 +11,7 @@ public static class MapperProfiles
     public static void UseApplicationProfiles(this IMapperConfigurationExpression config)
     {
         config.AddProfile<TodoListProfile>();
+        config.AddProfile<CityProfile>();
+        config.AddProfile<CountryProfile>();
     }
 }
