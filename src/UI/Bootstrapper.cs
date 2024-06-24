@@ -1,6 +1,8 @@
 ﻿using System.IO;
 using System.Reflection;
 using System.Windows;
+using Assignment.Application;
+using Assignment.Infrastructure;
 using Assignment.Infrastructure.Data;
 using Caliburn.Micro;
 using Microsoft.Extensions.Configuration;
@@ -45,8 +47,8 @@ internal class Bootstrapper : BootstrapperBase
     {
         var config = CreateConfiguration();
         return new ServiceCollection()
-           .AddUIServices()
            .AddApplicationServices()
+           .AddUIServices()
            .AddInfrastructureServices(config)
            .BuildServiceProvider();
     }

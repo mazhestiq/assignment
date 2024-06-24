@@ -14,7 +14,7 @@
         </Grid.ColumnDefinitions>
         <!-- Todo List Panel -->
         <StackPanel Grid.Column="0">
-            <ListBox ItemsSource="{Binding TodoLists}"
+            <ListBox Name="TodoListBox" ItemsSource="{Binding TodoLists}"
                  DisplayMemberPath="Title"
                  SelectedItem="{Binding SelectedTodoList}" Height="350"/>
             <Button Content="Add Todo List" Command="{Binding AddTodoListCommand}" Margin="5"/>
@@ -30,7 +30,7 @@
                 <ColumnDefinition Width="200"/>
                 <ColumnDefinition Width="200"/>
             </Grid.ColumnDefinitions>
-            <ListView ItemsSource="{Binding Items}" SelectedItem="{Binding DataContext.SelectedItem, RelativeSource={RelativeSource AncestorType=Window}}" Grid.Row="0" Grid.ColumnSpan="3">
+            <ListView Name="ListViewBox" ItemsSource="{Binding Items}" SelectedItem="{Binding DataContext.SelectedItem, RelativeSource={RelativeSource AncestorType=Window}}" Grid.Row="0" Grid.ColumnSpan="3">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="Title" DisplayMemberBinding="{Binding Title}" Width="300"/>
@@ -39,8 +39,8 @@
                     </GridView>
                 </ListView.View>
             </ListView>
-            <Button Content="Add Item" Command="{Binding DataContext.AddTodoItemCommand, RelativeSource={RelativeSource AncestorType=Window}}" Grid.Row="1" Grid.Column="1" Margin="5"/>
-            <Button Content="Done" Command="{Binding DataContext.DoneTodoItemCommand, RelativeSource={RelativeSource AncestorType=Window}}" Grid.Row="1" Grid.Column="2" Margin="5"/>
+            <Button Content="Add Item" IsEnabled="{Binding ElementName=TodoListBox, Path=SelectedItems.Count}" Command="{Binding DataContext.AddTodoItemCommand, RelativeSource={RelativeSource AncestorType=Window}}" Grid.Row="1" Grid.Column="1" Margin="5"/>
+            <Button Content="Done" IsEnabled="{Binding ElementName=ListViewBox, Path=SelectedItems.Count}" Command="{Binding DataContext.DoneTodoItemCommand, RelativeSource={RelativeSource AncestorType=Window}}" Grid.Row="1" Grid.Column="2" Margin="5"/>
         </Grid>
     </Grid>
 </UserControl>

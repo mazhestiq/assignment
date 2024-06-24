@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+﻿using System.Windows;
+using System.Windows.Input;
 using Assignment.Application.TodoItems.Commands.DoneTodoItem;
 using Assignment.Application.TodoLists.Queries.GetTodos;
 using Caliburn.Micro;
@@ -59,14 +60,14 @@ internal class TodoManagmentViewModel : Screen
 
     private async void Initialize()
     {
-        await RefereshTodoLists();
+        await RefreshTodoLists();
 
         AddTodoListCommand = new RelayCommand(AddTodoList);
         AddTodoItemCommand = new RelayCommand(AddTodoItem);
         DoneTodoItemCommand = new RelayCommand(DoneTodoItem);
     }
 
-    private async Task RefereshTodoLists()
+    private async Task RefreshTodoLists()
     {
         var selectedListId = SelectedTodoList?.Id;
 
@@ -81,17 +82,17 @@ internal class TodoManagmentViewModel : Screen
     private async void AddTodoList(object obj)
     {
         var todoList = new TodoListViewModel(_sender);
-        await _windowManager.ShowDialogAsync(todoList);
+        await _windowManager.ShowDialogAsync(todoList).ContinueWith(t => RefreshTodoLists());
     }
 
     private async void AddTodoItem(object obj)
     {
         var todoItem = new TodoItemViewModel(_sender, SelectedTodoList.Id);
-        await _windowManager.ShowDialogAsync(todoItem);
+        await _windowManager.ShowDialogAsync(todoItem).ContinueWith(t=> RefreshTodoLists());
     }
 
     private async void DoneTodoItem(object obj)
     {
-        await _sender.Send(new DoneTodoItemCommand(SelectedItem.Id));
+        await _sender.Send(new DoneTodoItemCommand(SelectedItem.Id)).ContinueWith(t => RefreshTodoLists());
     }
 }

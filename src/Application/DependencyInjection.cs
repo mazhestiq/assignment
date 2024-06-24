@@ -1,14 +1,15 @@
 ﻿using System.Reflection;
-using Assignment.Application;
 using Assignment.Application.Common.Behaviours;
+using Microsoft.Extensions.DependencyInjection;
 
-namespace Microsoft.Extensions.DependencyInjection;
+namespace Assignment.Application;
 
 public static class DependencyInjection
 {
     public static IServiceCollection AddApplicationServices(this IServiceCollection services)
     {
-        services.AddAutoMapper(Assembly.GetExecutingAssembly());
+        services.AddAutoMapper(expression => expression.UseMapping());
+
         services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
         services.AddMediatR(cfg => {
@@ -20,5 +21,10 @@ public static class DependencyInjection
         });
 
         return services;
+    }
+
+    private static void UseMapping(this IMapperConfigurationExpression config)
+    {
+        config.UseApplicationProfiles();
     }
 }
