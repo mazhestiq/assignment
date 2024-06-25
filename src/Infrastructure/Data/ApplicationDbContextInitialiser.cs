@@ -37,19 +37,17 @@ public class ApplicationDbContextInitialiser
         _roleManager = roleManager;
     }
 
-    public  Task InitialiseAsync()
+    public  async Task InitialiseAsync()
     {
         try
         {
-            //await _context.Database.MigrateAsync();
+            await _context.Database.MigrateAsync();
         }
         catch (Exception ex)
         {
             _logger.LogError(ex, "An error occurred while initialising the database.");
             throw;
         }
-
-        return Task.CompletedTask;
     }
 
     public async Task SeedAsync()
