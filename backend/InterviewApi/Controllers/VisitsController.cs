@@ -13,14 +13,14 @@ namespace InterviewApi.Controllers;
 public class VisitsController : ControllerBase
 {
     [HttpGet]
-    public ActionResult<VisitView[]> GetVisits([FromRoute] int customerId)
+    public ActionResult<VisitView[]> GetVisits()
     {
         var visits = Singleton.ReadVisitsFromJson();
 
         var customers = Singleton.ReadCustomersFromJson().ToDictionary(x=>x.Id, x=>x);
         var hotels = Singleton.ReadHotelsFromJson().ToDictionary(x => x.Id, x => x);
 
-        var result = visits.Where(x => x.CustomerId == customerId).ToArray().Select(x => new VisitView
+        var result = visits.ToArray().Select(x => new VisitView
         {
             CustomerId = x.CustomerId,
             Id = x.Id,
