@@ -35,11 +35,11 @@ public class VisitsController : ControllerBase
             } : new Customer(),
             Hotel = hotels.ContainsKey(x.HotelId) ? new Hotel
             {
-                Name = hotels[x.CustomerId].Name,
-                Description = hotels[x.CustomerId].Description,
-                Id = hotels[x.CustomerId].Id,
-                Location = hotels[x.CustomerId].Location,
-                Rating = hotels[x.CustomerId].Rating
+                Name = hotels[x.HotelId].Name,
+                Description = hotels[x.HotelId].Description,
+                Id = hotels[x.HotelId].Id,
+                Location = hotels[x.HotelId].Location,
+                Rating = hotels[x.HotelId].Rating
             } : new Hotel(),
         });
 
@@ -68,11 +68,11 @@ public class VisitsController : ControllerBase
             } : new Customer(),
             Hotel = hotels.ContainsKey(x.HotelId) ? new Hotel
             {
-                Name = hotels[x.CustomerId].Name,
-                Description = hotels[x.CustomerId].Description,
-                Id = hotels[x.CustomerId].Id,
-                Location = hotels[x.CustomerId].Location,
-                Rating = hotels[x.CustomerId].Rating
+                Name = hotels[x.HotelId].Name,
+                Description = hotels[x.HotelId].Description,
+                Id = hotels[x.HotelId].Id,
+                Location = hotels[x.HotelId].Location,
+                Rating = hotels[x.HotelId].Rating
             } : new Hotel(),
         });
 

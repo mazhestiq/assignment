@@ -9,6 +9,7 @@ namespace InterviewApi.Helper
     {
         private static readonly string _customersDataPath = Path.Combine(Directory.GetCurrentDirectory(), "Data", "customers.json");
         private static readonly string _visitDataPath = Path.Combine(Directory.GetCurrentDirectory(), "Data", "visitations.json");
+        private static readonly string _hotelsDataPath = Path.Combine(Directory.GetCurrentDirectory(), "Data", "hotels.json");
         /// <summary>
         /// Helper method to read visits from JSON file
         /// </summary>
@@ -97,10 +98,10 @@ namespace InterviewApi.Helper
         {
             try
             {
-                if (!System.IO.File.Exists(_customersDataPath))
+                if (!System.IO.File.Exists(_hotelsDataPath))
                     return [];
 
-                var json = System.IO.File.ReadAllText(_customersDataPath);
+                var json = System.IO.File.ReadAllText(_hotelsDataPath);
                 var data = JsonSerializer.Deserialize<HotelData>(json, new JsonSerializerOptions
                 {
                     PropertyNameCaseInsensitive = true
@@ -126,7 +127,7 @@ namespace InterviewApi.Helper
                     Hotels= hotels
                 };
                 var json = JsonSerializer.Serialize(data, new JsonSerializerOptions { WriteIndented = true });
-                System.IO.File.WriteAllText(_customersDataPath, json);
+                System.IO.File.WriteAllText(_hotelsDataPath, json);
             }
             catch
             {
